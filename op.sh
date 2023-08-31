@@ -1,6 +1,9 @@
 #!/bin/bash
 
-projectDir="$(du ~ | fzf | awk '{print $2}')"
+
+source ~/.op/oprc
+
+projectDir="$(du $projectDirs | fzf | awk '{print $2}')"
 
 projectName="$(echo $projectDir | awk --field-separator '/' '{print $NF}')"
 
