@@ -1,5 +1,8 @@
 #!/bin/bash
 
+type=$1
+
+echo $type
 
 source ~/.op/oprc
 
@@ -12,11 +15,14 @@ openWindow(){
 }
 
 openSession(){
-	tmux new-session -c $projectDir -n $projectName
+	tmux switch-client -t `tmux new-session -dP -c $projectDir -n $projectName -s $projectName`
 }
 
-openWindow
 
-if [[ $? == 1 ]]; then
-	openSession
+if [[ $type == "n" ]]; then
+    openWindow
+else
+    openSession
 fi
+
+
